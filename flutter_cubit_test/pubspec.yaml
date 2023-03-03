@@ -1,0 +1,45 @@
+name: flutter_cubit_test
+description: Cubit Example
+version: 1.0.0+1
+publish_to: none
+
+environment:
+  sdk: ">=2.17.0 <3.0.0"
+  flutter: 3.0.4
+
+dependencies:
+  bloc: ^8.0.3
+  #compiler
+  build_runner: ^2.3.0
+  #compare states properties
+  equatable: ^2.0.5
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^8.0.1
+  flutter_localizations:
+    sdk: flutter
+  intl: ^0.17.0
+  #objectbox
+  objectbox: ^1.7.2
+  objectbox_flutter_libs: ^1.7.2
+  objectbox_generator: ^1.7.2
+  #path provider
+  path_provider: ^2.0.13
+
+dev_dependencies:
+  bloc_test: ^9.0.3
+  flutter_test:
+    sdk: flutter
+  mocktail: ^0.3.0
+  very_good_analysis: ^3.0.1
+
+objectbox:
+  # Writes objectbox-model.json and objectbox.g.dart to lib/custom (and test/custom).
+  # Or optionally specify the lib and test output folder separately.
+  output_dir:
+    lib: /data
+  #   test: other
+
+flutter:
+  uses-material-design: true
+  generate: true

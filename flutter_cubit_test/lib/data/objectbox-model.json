@@ -1,0 +1,109 @@
+{
+  "_note1": "KEEP THIS FILE! Check it into a version control system (VCS) like git.",
+  "_note2": "ObjectBox manages crucial IDs for your object model. See docs for details.",
+  "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
+  "entities": [
+    {
+      "id": "2:999324529684626186",
+      "lastPropertyId": "3:1892429968554460863",
+      "name": "MenuUsuarioModel",
+      "properties": [
+        {
+          "id": "1:1920459268363600745",
+          "name": "id",
+          "type": 6,
+          "flags": 129
+        },
+        {
+          "id": "2:481034728765053030",
+          "name": "name",
+          "type": 9
+        },
+        {
+          "id": "3:1892429968554460863",
+          "name": "grupoId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "2:5967203531705451646",
+          "relationTarget": "GrupoMenuModel"
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "3:451502075912232767",
+      "lastPropertyId": "2:7327369501819024646",
+      "name": "UsuariosModel",
+      "properties": [
+        {
+          "id": "1:4321371377241015924",
+          "name": "id",
+          "type": 6,
+          "flags": 129
+        },
+        {
+          "id": "2:7327369501819024646",
+          "name": "name",
+          "type": 9
+        }
+      ],
+      "relations": [
+        {
+          "id": "2:6637949923173502729",
+          "name": "lsMenuGrupo",
+          "targetId": "4:1655939779550617276"
+        }
+      ]
+    },
+    {
+      "id": "4:1655939779550617276",
+      "lastPropertyId": "3:5183471277791227690",
+      "name": "GrupoMenuModel",
+      "properties": [
+        {
+          "id": "1:3844980975195019388",
+          "name": "id",
+          "type": 6,
+          "flags": 129
+        },
+        {
+          "id": "2:2137794517312227794",
+          "name": "name",
+          "type": 9
+        },
+        {
+          "id": "3:5183471277791227690",
+          "name": "usuarioId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "3:7338476682902439120",
+          "relationTarget": "UsuariosModel"
+        }
+      ],
+      "relations": [
+        {
+          "id": "3:4132775251662415784",
+          "name": "lsMenus",
+          "targetId": "2:999324529684626186"
+        }
+      ]
+    }
+  ],
+  "lastEntityId": "4:1655939779550617276",
+  "lastIndexId": "3:7338476682902439120",
+  "lastRelationId": "3:4132775251662415784",
+  "lastSequenceId": "0:0",
+  "modelVersion": 5,
+  "modelVersionParserMinimum": 5,
+  "retiredEntityUids": [
+    2544483934283152083
+  ],
+  "retiredIndexUids": [],
+  "retiredPropertyUids": [
+    7416888778985959327,
+    1673868553503045366,
+    3228952563075130892
+  ],
+  "retiredRelationUids": [],
+  "version": 1
+}
