@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_cubit_test/data/model/usuarios_model.dart';
 import 'package:flutter_cubit_test/modules/GruposMenu/cubit/grupos_menu_cubit.dart';
+import 'package:flutter_cubit_test/modules/Menu/menu_page.dart';
 
 class GruposMenuPage extends StatefulWidget {
   const GruposMenuPage({super.key, required this.idUsuario});
@@ -39,7 +40,9 @@ class _GruposMenuPageState extends State<GruposMenuPage> {
                 itemCount: state.lsGruposMenu.length,
                 itemBuilder: (context, index) {
                   return InkWell(
-                    onTap: () {},
+                    onTap: () async{
+                      await Navigator.push(context, MaterialPageRoute(builder: (context) => MenuPage(idGrupoMenu: state.lsGruposMenu[index].id,),));
+                    },
                     child: ListTile(
                       leading: const FlutterLogo(),
                       title: Text(state.lsGruposMenu[index].name),

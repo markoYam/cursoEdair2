@@ -30,4 +30,10 @@ class GrupoMenuController {
     final result = box.remove(grupoMenu.id);
     return result;
   }
+
+  GrupoMenuModel? getById(int id) {
+    final box = DataBaseController.store.box<GrupoMenuModel>();
+    final usuario = box.get(id);
+    return usuario;
+  }
 }
