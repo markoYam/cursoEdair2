@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_cubit_test/data/model/usuarios_model.dart';
+import 'package:flutter_cubit_test/data/model/menu_grupo.dart';
+import 'package:flutter_cubit_test/data/model/menu_usuario.dart';
 import 'package:flutter_cubit_test/modules/GruposMenu/cubit/grupos_menu_cubit.dart';
 import 'package:flutter_cubit_test/modules/Menu/menu_page.dart';
 
@@ -36,19 +35,36 @@ class _GruposMenuPageState extends State<GruposMenuPage> {
               child = const Center(child: CircularProgressIndicator());
             } else if (state.status == GrupoMenuEstatus.success) {
               child = ListView.separated(
-                separatorBuilder: (context, index) => const Divider(),
-                itemCount: state.lsGruposMenu.length,
                 itemBuilder: (context, index) {
                   return InkWell(
-                    onTap: () async{
-                      await Navigator.push(context, MaterialPageRoute(builder: (context) => MenuPage(idGrupoMenu: state.lsGruposMenu[index].id,),));
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute<void>(
+                          builder: (context) => MenuPage(
+                            idGrupoMenu: state.lsGruposMenu[index].id,
+                          ),
+                        ),
+                      ).then((value) => _cubit.getAll());
                     },
-                    child: ListTile(
-                      leading: const FlutterLogo(),
-                      title: Text(state.lsGruposMenu[index].name),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        ListTile(
+                          leading: const FlutterLogo(),
+                          title: Text(
+                            state.lsGruposMenu[index].name,
+                          ),
+                        ),
+                        listMenusGrupo(
+                          lsMenus: state.lsGruposMenu[index].lsMenus,
+                        ),
+                      ],
                     ),
                   );
                 },
+                separatorBuilder: (context, index) => const Divider(),
+                itemCount: state.lsGruposMenu.length,
               );
             } else {
               child = const Center(child: Text('No hay datos2'));
@@ -59,20 +75,41 @@ class _GruposMenuPageState extends State<GruposMenuPage> {
               child: Column(
                 children: [
                   Text(
-                    'Usuario: ${state.usuario!.name}',
-                    style: const TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    'Usuario ${state.usuario!.name}',
+                    style: Theme.of(context).textTheme.headline5,
                   ),
+                  const SizedBox(height: 10),
                   formNewGroup(),
-                  Expanded(child: child)
+                  const SizedBox(height: 10),
+                  Expanded(child: child),
                 ],
               ),
             );
           },
         ),
       ),
+    );
+  }
+
+  Widget listMenusGrupo({required List<MenuUsuarioModel> lsMenus}) {
+    //list litle menus
+    return ListView.builder(
+      shrinkWrap: true,
+      itemBuilder: (context, index) {
+        return Padding(
+          padding: const EdgeInsets.only(left: 50),
+          child: InkWell(
+            onTap: () {},
+            child: ListTile(
+              //leading: const FlutterLogo(),
+              title: Text(
+                lsMenus[index].name,
+              ),
+            ),
+          ),
+        );
+      },
+      itemCount: lsMenus.length,
     );
   }
 

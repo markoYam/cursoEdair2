@@ -37,7 +37,7 @@ class MenuCubit extends Cubit<MenuState> {
     }
   }
 
-   Future<void> insert({
+  Future<void> insert({
     required String menuUsuario,
     required BuildContext context,
   }) async {
@@ -45,6 +45,12 @@ class MenuCubit extends Cubit<MenuState> {
 
     final grupo = MenuUsuarioModel(name: menuUsuario);
     grupo.grupo.target = state.grupoMenu;
+
+    final currentGrupo = state.grupoMenu;
+
+    currentGrupo!.lsMenus.add(grupo);
+
+    final result1 = await GrupoMenuController().update(grupoMenu: currentGrupo);
 
     final result = await _menuController.insert(
       menuUsuario: grupo,
@@ -77,5 +83,4 @@ class MenuCubit extends Cubit<MenuState> {
       },
     );
   }
-
 }

@@ -24,48 +24,63 @@ class _MenuPageState extends State<MenuPage> {
         child: BlocBuilder<MenuCubit, MenuState>(
           builder: (context, state) {
             _cubit = context.read<MenuCubit>();
-            Widget childWidget = const Center(child: Text('No hay datos'),);
+            Widget childWidget = const Center(
+              child: Text('No hay datos'),
+            );
             if (state.status == MenuStatus.loading) {
               return const Center(
                 child: CircularProgressIndicator(),
               );
             } else if (state.status == MenuStatus.success) {
-              childWidget = ListView.separated(itemBuilder: (context, index) {
-                return InkWell(
-                  onTap: () {
-                    
-                  },
-                  child: ListTile(leading: const FlutterLogo(), title: Text(state.lsMenusGrupos[index].name,),),
-                );
-              }, separatorBuilder: (context, index) => const Divider(), itemCount: state.lsMenusGrupos.length,);
+              childWidget = ListView.separated(
+                itemBuilder: (context, index) {
+                  return InkWell(
+                    onTap: () {},
+                    child: ListTile(
+                      leading: const FlutterLogo(),
+                      title: Text(
+                        state.lsMenusGrupos[index].name,
+                      ),
+                    ),
+                  );
+                },
+                separatorBuilder: (context, index) => const Divider(),
+                itemCount: state.lsMenusGrupos.length,
+              );
             } else {
-              childWidget = const Center(child: Text('No hay datos'),);
+              childWidget = const Center(
+                child: Text('No hay datos'),
+              );
             }
-            return Padding(padding: const EdgeInsets.all(10),
-            child: Column(
-              children: [
-                Text('Usuario ${state.grupoMenu!.name}', style: const TextStyle(
+            return Padding(
+              padding: const EdgeInsets.all(10),
+              child: Column(
+                children: [
+                  Text(
+                    'Usuario ${state.grupoMenu!.name}',
+                    style: const TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.bold,
-                    ),),
-                    formNewGroup(),
-                    Expanded(child: childWidget),
-
-
-              ],
-            ),);
+                    ),
+                  ),
+                  formNewGroup(),
+                  Expanded(child: childWidget),
+                ],
+              ),
+            );
           },
         ),
       ),
     );
   }
+
   final controllerNombre = TextEditingController();
   Widget formNewGroup() {
     return Column(
       children: [
         TextFormField(
           decoration: const InputDecoration(
-            labelText: 'Nombre del Grupo',
+            labelText: 'Nombre del Menú',
           ),
           controller: controllerNombre,
         ),
@@ -80,4 +95,3 @@ class _MenuPageState extends State<MenuPage> {
     );
   }
 }
-
